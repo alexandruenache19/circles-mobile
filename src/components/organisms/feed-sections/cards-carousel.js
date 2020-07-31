@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { View, RefreshControl } from 'react-native'
 
-import { LargeEventCard } from '_organisms'
+import { LargeEventCard, LargeLiveCard } from '_organisms'
 import { Colors, Spacing } from '_styles'
 import Carousel from 'react-native-snap-carousel';
 
@@ -23,6 +23,21 @@ class PopularStreams extends PureComponent {
   }
 
   rowRenderer({item}) {
+    const { type } = this.props
+    if (type === 'live') {
+      return (
+        <LargeLiveCard
+          item={item}
+        />
+      )
+    } else if (type === ' event') {
+      return (
+        <LargeEventCard
+          item={item}
+        />
+      )
+    }
+
     return (
       <LargeEventCard
         item={item}
@@ -49,6 +64,7 @@ class PopularStreams extends PureComponent {
         itemHeight={500}
         renderItem={this.rowRenderer}
         onSnapToItem={this.onSnapToItem}
+        style={{backgroundColor: Colors.MAIN_BG_COLOR}}
         refreshControl={
           <RefreshControl
             progressBackgroundColor={Colors.FLOATING_BG}

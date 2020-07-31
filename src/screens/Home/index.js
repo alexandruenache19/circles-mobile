@@ -7,7 +7,7 @@ import { Colors, Spacing } from '_styles'
 import { Label } from '_atoms'
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 
-import {UpcommingEventsSection} from '_organisms'
+import {CardsCarouselSection} from '_organisms'
 
 // import InstagramLogin from 'react-native-instagram-login';
 // import { NodeCameraView, NodePlayerView, NodeMediaClient } from 'react-native-nodemediaclient'
@@ -64,12 +64,10 @@ class Home extends PureComponent {
     const { index, routes } = this.state
 
     return (
-      <SafeAreaView style={{ height: 800, backgroundColor: Colors.MAIN_BG_COLOR, alignItems: 'flex-start', justifyContent: 'center' }}>
-
+      <SafeAreaView style={{ height: Spacing.DEVICE_HEIGHT, width: Spacing.DEVICE_WIDTH, backgroundColor: Colors.MAIN_BG_COLOR, alignItems: 'center', justifyContent: 'center' }}>
         <TabView
-          style={{width: '100%'}}
-          renderTabBar={props => (
-            <TabBar
+          style={{ width: '100%', marginLeft: 10, marginRight: 10, backgroundColor: Colors.MAIN_BG_COLOR, justifyContent: 'center'  }}
+          renderTabBar={props => ( <TabBar
               {...props}
               scrollEnabled
               pressOpacity={0.85}
@@ -85,11 +83,10 @@ class Home extends PureComponent {
                 height: 0
               }}
               style={{ backgroundColor: Colors.MAIN_BG_COLOR }}
-            />
-          )}
+            /> )}
           navigationState={{ index, routes }}
           renderScene={SceneMap({
-           first: () => <UpcommingEventsSection data={[
+           first: () => <CardsCarouselSection data={[
              {
                imageURL:'https://www.rollingstone.com/wp-content/uploads/2019/01/R1324_FEA_Tekashi69_B3.jpg?resize=1800,1200&w=1800',
                title: '69 New Album premier',
@@ -188,8 +185,8 @@ class Home extends PureComponent {
                  imageURL: ''
                }
              },
-           ]} />,
-           second: () => <UpcommingEventsSection data={[{
+           ]} type='event' />,
+           second: () => <CardsCarouselSection data={[{
              imageURL:'https://www.rollingstone.com/wp-content/uploads/2019/01/R1324_FEA_Tekashi69_B3.jpg?resize=1800,1200&w=1800',
              title: '69 New Album premier',
              date: 'TODAY AT 3 PM',
@@ -205,8 +202,7 @@ class Home extends PureComponent {
                name: '',
                imageURL: ''
              }
-           },
-           {
+           }, {
              imageURL:'https://www.rollingstone.com/wp-content/uploads/2019/01/R1324_FEA_Tekashi69_B3.jpg?resize=1800,1200&w=1800',
              title: 'Title Title Tile',
              date: 'Date Date',
@@ -222,8 +218,7 @@ class Home extends PureComponent {
                name: '',
                imageURL: ''
              }
-           },
-           {
+           }, {
              imageURL:'https://www.rollingstone.com/wp-content/uploads/2019/01/R1324_FEA_Tekashi69_B3.jpg?resize=1800,1200&w=1800',
              title: 'Live concert',
              date: '',
@@ -239,14 +234,13 @@ class Home extends PureComponent {
                name: '',
                imageURL: ''
              }
-           }]} />,
-           third: () => <UpcommingEventsSection data={[]} />,
-           fourth: () => <UpcommingEventsSection data={[]} />,
-           fifth: () => <UpcommingEventsSection data={[]} />,
+           }]} type='event' />,
+           third: () => <CardsCarouselSection data={[]} type='event' />,
+           fourth: () => <CardsCarouselSection data={[]} type='event' />,
+           fifth: () => <CardsCarouselSection data={[]}  type='event' />,
           })}
           onIndexChange={this.handleSetIndex}
-
-          initialLayout={{height:200, width:209}}
+          initialLayout={{height: Spacing.DEVICE_HEIGHT, width: Spacing.DEVICE_WIDTH}}
         />
 
       </SafeAreaView>

@@ -163,7 +163,7 @@ const mapDispatchToProps = {
 const styles = StyleSheet.create({
   container: {
     width: 400,
-    height: 500,
+    height: 700,
     borderRadius: 10
   },
 

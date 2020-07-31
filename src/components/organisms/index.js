@@ -1,5 +1,5 @@
 export { default as LiveEventsSection } from './feed-sections/live-events'
-export { default as UpcommingEventsSection } from './feed-sections/upcoming-events-carousel'
+export { default as CardsCarouselSection } from './feed-sections/cards-carousel'
 
 export { default as SmallLiveCard } from './cards/small-live-card'
 export { default as LargeLiveCard } from './cards/large-live-card'
