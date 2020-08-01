@@ -1,10 +1,6 @@
 import React from 'react'
 import { Platform } from 'react-native'
 import { Navigation } from 'react-native-navigation'
-
-import auth from '@react-native-firebase/auth'
-
-import IconOcticons from 'react-native-vector-icons/Octicons'
 import IconMaterialCommunity from 'react-native-vector-icons/MaterialCommunityIcons'
 import IconEntypo from 'react-native-vector-icons/Entypo'
 import IconFeather from 'react-native-vector-icons/Feather'
@@ -12,8 +8,6 @@ import IconFeather from 'react-native-vector-icons/Feather'
 import { FetchingActions } from '_actions'
 
 import { Constants, Colors } from '_styles'
-import { store } from '../redux/store'
-const { fetchUser } = FetchingActions
 
 const selectedColor = Colors.isDarkMode ? '#FFFFFF' : '#3E4BAE'
 const unSelectedColor = Colors.isDarkMode ? Colors.LOW_EMPHASIS_WHITE : '#95979A'
@@ -48,211 +42,210 @@ export const goToApp = async () => {
   //   await store.dispatch(fetchUser(user))
   // }
   return Promise.all([
-      IconMaterialCommunity.getImageSource('home', 26, unSelectedColor),
-      IconMaterialCommunity.getImageSource('home', 26, selectedColor),
-      IconFeather.getImageSource('tv', 21, unSelectedColor),
-      IconFeather.getImageSource('tv', 21, selectedColor),
-      IconEntypo.getImageSource('fingerprint', 24, unSelectedColor),
-      IconEntypo.getImageSource('fingerprint', 24, selectedColor),
-      IconEntypo.getImageSource('notification', 24, unSelectedColor),
-      IconEntypo.getImageSource('notification', 24, selectedColor),
-      IconFeather.getImageSource('video', 26, unSelectedColor),
-      IconFeather.getImageSource('video', 26, selectedColor)
-    ]).then(([
-      homeIcon,
-      homeIconSelected,
-      streamsIcon,
-      streamsIconSelected,
-      userIcon,
-      userIconSelected,
-      notificationIcon,
-      notificationIconSelected,
-      videoIcon,
-      videoIconSelected
-    ]) => {
-  Navigation.setRoot({
-    root: {
-      bottomTabs: {
-        id: 'BottomTabsId',
-
-        children: [
-          {
-            stack: {
-              children: [
-                {
-                  component: {
-                    id: 'home',
-                    name: 'Home'
+    IconMaterialCommunity.getImageSource('home', 26, unSelectedColor),
+    IconMaterialCommunity.getImageSource('home', 26, selectedColor),
+    IconFeather.getImageSource('tv', 21, unSelectedColor),
+    IconFeather.getImageSource('tv', 21, selectedColor),
+    IconEntypo.getImageSource('fingerprint', 24, unSelectedColor),
+    IconEntypo.getImageSource('fingerprint', 24, selectedColor),
+    IconEntypo.getImageSource('notification', 24, unSelectedColor),
+    IconEntypo.getImageSource('notification', 24, selectedColor),
+    IconFeather.getImageSource('video', 32, unSelectedColor),
+    IconFeather.getImageSource('video', 32, selectedColor)
+  ]).then(([
+    homeIcon,
+    homeIconSelected,
+    streamsIcon,
+    streamsIconSelected,
+    userIcon,
+    userIconSelected,
+    notificationIcon,
+    notificationIconSelected,
+    videoIcon,
+    videoIconSelected
+  ]) => {
+    Navigation.setRoot({
+      root: {
+        bottomTabs: {
+          id: 'BottomTabsId',
+          children: [
+            {
+              stack: {
+                children: [
+                  {
+                    component: {
+                      id: 'home',
+                      name: 'Home'
+                    }
+                  }
+                ],
+                options: {
+                  topBar: {
+                    visible: false
+                  },
+                  bottomTab: {
+                    animate: false,
+                    text: 'Home',
+                    fontSize: Platform.OS === 'ios' ? 11 : 9,
+                    selectedFontSize: Platform.OS === 'ios' ? 11 : 9,
+                    fontFamily: Platform.OS === 'ios' ? 'SFProText-Medium' : 'SF-Pro-Text-Medium',
+                    textColor: unSelectedColor,
+                    selectedTextColor: selectedColor,
+                    icon: homeIcon,
+                    selectedIcon: homeIconSelected,
+                    titleDisplayMode: 'alwaysShow'
+                  },
+                  bottomTabs: {
+                    backgroundColor: Colors.MAIN_BG_COLOR
+                  },
+                  layout: {
+                    orientation: ['portrait']
                   }
                 }
-              ],
-              options: {
-                topBar: {
-                  visible: false
-                },
-                bottomTab: {
-                  animate: false,
-                  text: 'Home',
-                  fontSize: Platform.OS === 'ios' ? 11 : 9,
-                  selectedFontSize: Platform.OS === 'ios' ? 11 : 9,
-                  fontFamily: Platform.OS === 'ios' ? 'SFProText-Medium' : 'SF-Pro-Text-Medium',
-                  textColor: unSelectedColor,
-                  selectedTextColor: selectedColor,
-                  icon: homeIcon,
-                  selectedIcon: homeIconSelected,
-                  titleDisplayMode: 'alwaysShow'
-                },
-                bottomTabs:{
-                  backgroundColor: Colors.MAIN_BG_COLOR
-                },
-                layout: {
-                  orientation: ['portrait']
+              }
+            },
+            {
+              stack: {
+                children: [
+                  {
+                    component: {
+                      id: 'streams',
+                      name: 'Streams'
+                    }
+                  }
+                ],
+                options: {
+                  topBar: {
+                    visible: false
+                  },
+                  bottomTab: {
+                    animate: false,
+                    text: 'Streams',
+                    fontSize: Platform.OS === 'ios' ? 11 : 9,
+                    selectedFontSize: Platform.OS === 'ios' ? 11 : 9,
+                    fontFamily: Platform.OS === 'ios' ? 'SFProText-Medium' : 'SF-Pro-Text-Medium',
+                    textColor: unSelectedColor,
+                    selectedTextColor: selectedColor,
+                    icon: streamsIcon,
+                    selectedIcon: streamsIconSelected,
+                    titleDisplayMode: 'alwaysShow'
+                  },
+                  bottomTabs: {
+                    backgroundColor: Colors.MAIN_BG_COLOR
+                  },
+                  layout: {
+                    orientation: ['portrait']
+                  }
+                }
+              }
+            },
+            {
+              stack: {
+                children: [
+                  {
+                    component: {
+                      id: 'createEvent',
+                      name: 'CreateEvent'
+                    }
+                  }
+                ],
+                options: {
+                  topBar: {
+                    visible: false
+                  },
+                  bottomTab: {
+                    animate: false,
+                    textColor: unSelectedColor,
+                    selectedTextColor: selectedColor,
+                    icon: videoIcon,
+                    selectedIcon: videoIconSelected,
+                    selectTabOnPress: false,
+                    iconInsets: { top: 6, left: 0, bottom: -6, right: 0 }
+                  },
+                  bottomTabs: {
+                    backgroundColor: Colors.MAIN_BG_COLOR
+                  },
+                  layout: {
+                    orientation: ['portrait']
+                  }
+                }
+              }
+            },
+            {
+              stack: {
+                children: [
+                  {
+                    component: {
+                      id: 'notifications',
+                      name: 'Notifications'
+                    }
+                  }
+                ],
+                options: {
+                  topBar: {
+                    visible: false
+                  },
+                  bottomTab: {
+                    animate: false,
+                    text: 'Notifications',
+                    fontSize: Platform.OS === 'ios' ? 11 : 9,
+                    selectedFontSize: Platform.OS === 'ios' ? 11 : 9,
+                    fontFamily: Platform.OS === 'ios' ? 'SFProText-Medium' : 'SF-Pro-Text-Medium',
+                    textColor: unSelectedColor,
+                    selectedTextColor: selectedColor,
+                    icon: notificationIcon,
+                    selectedIcon: notificationIconSelected,
+                    titleDisplayMode: 'alwaysShow'
+                  },
+                  bottomTabs: {
+                    backgroundColor: Colors.MAIN_BG_COLOR
+                  },
+                  layout: {
+                    orientation: ['portrait']
+                  }
+                }
+              }
+            },
+            {
+              stack: {
+                children: [
+                  {
+                    component: {
+                      id: 'profile',
+                      name: 'Profile'
+                    }
+                  }
+                ],
+                options: {
+                  topBar: {
+                    visible: false
+                  },
+                  bottomTab: {
+                    animate: false,
+                    text: 'Profile',
+                    fontSize: Platform.OS === 'ios' ? 11 : 9,
+                    selectedFontSize: Platform.OS === 'ios' ? 11 : 9,
+                    fontFamily: Platform.OS === 'ios' ? 'SFProText-Medium' : 'SF-Pro-Text-Medium',
+                    textColor: unSelectedColor,
+                    selectedTextColor: selectedColor,
+                    icon: userIcon,
+                    selectedIcon: userIconSelected,
+                    titleDisplayMode: 'alwaysShow'
+                  },
+                  bottomTabs: {
+                    backgroundColor: Colors.MAIN_BG_COLOR
+                  },
+                  layout: {
+                    orientation: ['portrait']
+                  }
                 }
               }
             }
-          },
-          {
-            stack: {
-              children: [
-                {
-                  component: {
-                    id: 'streams',
-                    name: 'Streams'
-                  }
-                }
-              ],
-              options: {
-                topBar: {
-                  visible: false
-                },
-                bottomTab: {
-                  animate: false,
-                  text: 'Streams',
-                  fontSize: Platform.OS === 'ios' ? 11 : 9,
-                  selectedFontSize: Platform.OS === 'ios' ? 11 : 9,
-                  fontFamily: Platform.OS === 'ios' ? 'SFProText-Medium' : 'SF-Pro-Text-Medium',
-                  textColor: unSelectedColor,
-                  selectedTextColor: selectedColor,
-                  icon: streamsIcon,
-                  selectedIcon: streamsIconSelected,
-                  titleDisplayMode: 'alwaysShow'
-                },
-                bottomTabs:{
-                  backgroundColor: Colors.MAIN_BG_COLOR
-                },
-                layout: {
-                  orientation: ['portrait']
-                }
-              }
-            }
-          },
-          {
-            stack: {
-              children: [
-                {
-                  component: {
-                    id: 'createEvent',
-                    name: 'CreateEvent'
-                  }
-                }
-              ],
-              options: {
-                topBar: {
-                  visible: false
-                },
-                bottomTab: {
-                  animate: false,
-                  textColor: unSelectedColor,
-                  selectedTextColor: selectedColor,
-                  icon: videoIcon,
-                  selectedIcon: videoIconSelected,
-                  selectTabOnPress: false,
-                  iconInsets: { top: 6, left: 0, bottom: -6, right: 0 }
-                },
-                bottomTabs:{
-                  backgroundColor: Colors.MAIN_BG_COLOR
-                },
-                layout: {
-                  orientation: ['portrait']
-                }
-              }
-            }
-          },
-          {
-            stack: {
-              children: [
-                {
-                  component: {
-                    id: 'notifications',
-                    name: 'Notifications'
-                  }
-                }
-              ],
-              options: {
-                topBar: {
-                  visible: false
-                },
-                bottomTab: {
-                  animate: false,
-                  text: 'Notifications',
-                  fontSize: Platform.OS === 'ios' ? 11 : 9,
-                  selectedFontSize: Platform.OS === 'ios' ? 11 : 9,
-                  fontFamily: Platform.OS === 'ios' ? 'SFProText-Medium' : 'SF-Pro-Text-Medium',
-                  textColor: unSelectedColor,
-                  selectedTextColor: selectedColor,
-                  icon: notificationIcon,
-                  selectedIcon: notificationIconSelected,
-                  titleDisplayMode: 'alwaysShow'
-                },
-                bottomTabs:{
-                  backgroundColor: Colors.MAIN_BG_COLOR
-                },
-                layout: {
-                  orientation: ['portrait']
-                }
-              }
-            }
-          },
-          {
-            stack: {
-              children: [
-                {
-                  component: {
-                    id: 'profile',
-                    name: 'Profile'
-                  }
-                }
-              ],
-              options: {
-                topBar: {
-                  visible: false
-                },
-                bottomTab: {
-                  animate: false,
-                  text: 'Profile',
-                  fontSize: Platform.OS === 'ios' ? 11 : 9,
-                  selectedFontSize: Platform.OS === 'ios' ? 11 : 9,
-                  fontFamily: Platform.OS === 'ios' ? 'SFProText-Medium' : 'SF-Pro-Text-Medium',
-                  textColor: unSelectedColor,
-                  selectedTextColor: selectedColor,
-                  icon: userIcon,
-                  selectedIcon: userIconSelected,
-                  titleDisplayMode: 'alwaysShow'
-                },
-                bottomTabs:{
-                  backgroundColor: Colors.MAIN_BG_COLOR
-                },
-                layout: {
-                  orientation: ['portrait']
-                }
-              }
-            }
-          }
-        ]
+          ]
+        }
       }
-    }
+    })
   })
-})
 }
 
 export const openModal = (screenName, passProps, modalHeaderTitle) => {

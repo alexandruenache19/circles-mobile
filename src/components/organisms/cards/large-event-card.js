@@ -5,7 +5,7 @@ import { StyleSheet, View, Text } from 'react-native'
 import FastImage from 'react-native-fast-image'
 import Touchable from 'react-native-platform-touchable'
 
-import { ButtonWithTextIcon, ButtonWithIcon, LabelHighlight} from '_atoms'
+import { ButtonWithTextIcon, ButtonWithIcon, LabelHighlight } from '_atoms'
 import { Constants, Colors } from '_styles'
 
 import { Transitions } from '_navigation'
@@ -27,23 +27,22 @@ class LargeEventCard extends PureComponent {
   }
 
   handleReserveSpot () {
-    const {reserved} = this.state
+    const { reserved } = this.state
     // if (!reserved) {
     //
     // }
-    this.setState({reserved: !reserved})
-
+    this.setState({ reserved: !reserved })
   }
 
   render () {
     const { item } = this.props
     const { reserved } = this.state
-    const price = item.price && item.price.type === 'free' ?
-      'FREE' : item.price.amount + ' ' + item.price.currency
+    const price = item.price && item.price.type === 'free'
+      ? 'FREE' : item.price.amount + ' ' + item.price.currency
 
     return (
-      <View style={{flex:1}}>
-        <View style={{ flex:1, overflow: 'hidden', borderRadius: 10, backgroundColor: Colors.MAIN_CONTRAST_COLOR }}>
+      <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, overflow: 'hidden', borderRadius: 10, backgroundColor: Colors.MAIN_CONTRAST_COLOR }}>
           <Touchable
             foreground={Touchable.Ripple('rgba(255,255,255,0.2)', true)}
             onPress={this.handleOnPress}
@@ -54,20 +53,19 @@ class LargeEventCard extends PureComponent {
             activeOpacity={0.8}
           >
             <View style={styles.rectangularCard}>
-              { item.hasOwnProperty('previewVideoURL') ? (
-                  <FastImage
-                   style={styles.reactangularImage}
-                   source={{ uri: item.imageURL }}
-                   resizeMode={FastImage.resizeMode.cover}
-                 />
-                ) : (
-                 <FastImage
+              {item.hasOwnProperty('previewVideoURL') ? (
+                <FastImage
                   style={styles.reactangularImage}
                   source={{ uri: item.imageURL }}
                   resizeMode={FastImage.resizeMode.cover}
                 />
-                )
-              }
+              ) : (
+                <FastImage
+                  style={styles.reactangularImage}
+                  source={{ uri: item.imageURL }}
+                  resizeMode={FastImage.resizeMode.cover}
+                />
+              )}
 
               <View style={{
                 display: 'flex',
@@ -76,9 +74,10 @@ class LargeEventCard extends PureComponent {
                 padding: 12,
                 alignItems: 'flex-start',
                 justifyContent: 'space-between'
-              }}>
-                <View style={{width: '100%'}}>
-                  <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+              }}
+              >
+                <View style={{ width: '100%' }}>
+                  <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                     <Text
                       style={styles.title}
                       ellipsizeMode='tail'
@@ -109,11 +108,11 @@ class LargeEventCard extends PureComponent {
                   </Text>
                 </View>
 
-                <View style={{flexDirection: 'row', width:'100%', justifyContent:'space-between'}}>
+                <View style={{ flexDirection: 'row', width: '100%', justifyContent: 'space-between' }}>
                   <ButtonWithTextIcon
                     iconType={reserved ? 'FontAwesome' : 'Ionicons'}
                     iconName={reserved ? 'check' : 'md-notifications'}
-                    iconColor={'#FFF'}
+                    iconColor='#FFF'
                     iconSize={22}
                     text={reserved ? 'Reserved' : 'Reserve spot'}
                     style={{
@@ -126,15 +125,15 @@ class LargeEventCard extends PureComponent {
                     textStyle={{
                       paddingLeft: 10,
                       fontSize: 22,
-                      color:'#FFF'
+                      color: '#FFF'
                     }}
                     onPress={this.handleReserveSpot}
                   />
 
                   <ButtonWithIcon
-                    iconType={'FontAwesome5'}
-                    iconName={'share'}
-                    iconColor={'#FFF'}
+                    iconType='FontAwesome5'
+                    iconName='share'
+                    iconColor='#FFF'
                     iconSize={22}
                     style={{
                       backgroundColor: Colors.MAIN_BG_COLOR,
@@ -164,7 +163,7 @@ const mapDispatchToProps = {
 
 const styles = StyleSheet.create({
   container: {
-    flex:1,
+    flex: 1,
     borderRadius: 10
   },
 
@@ -180,7 +179,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     height: '50%',
-    width: '100%',
+    width: '100%'
   },
   title: {
     letterSpacing: -0.3,

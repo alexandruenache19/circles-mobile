@@ -1,7 +1,7 @@
 // external modules
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import { View, Text, BackHandler, FlatList, SafeAreaView} from 'react-native'
+import { View, Text, BackHandler, FlatList, SafeAreaView } from 'react-native'
 import { Navigation } from 'react-native-navigation'
 
 import styles from './_style.js'
@@ -22,7 +22,6 @@ class NotificationsScreen extends PureComponent {
   }
 
   async componentDidMount () {
-
     this.backHandler = BackHandler.addEventListener(
       'hardwareBackPress', () => Navigation.dismissAllModals()
     )
@@ -70,15 +69,15 @@ class NotificationsScreen extends PureComponent {
 
     if (data && data.length === 0) {
       return (
-        <SafeAreaView style={{ flex:1, display:'flex', alignItems: 'center', backgroundColor: Colors.MAIN_BG_COLOR }}>
-          <View style={{ display:'flex', height: 60, width: 60, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <SafeAreaView style={{ flex: 1, display: 'flex', alignItems: 'center', backgroundColor: Colors.MAIN_BG_COLOR }}>
+          <View style={{ display: 'flex', height: 60, width: 60, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <Icon
               iconType='MaterialIndicator'
               iconColor={Colors.MAIN_CONTRAST_COLOR}
               iconSize={23}
             />
           </View>
-          <Text style={{color:"#FFF"}}>
+          <Text style={{ color: '#FFF' }}>
             Fetching the latest notifications
           </Text>
         </SafeAreaView>
@@ -106,7 +105,6 @@ class NotificationsScreen extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-
 
 })
 

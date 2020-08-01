@@ -21,7 +21,7 @@ class LiveEventsSection extends PureComponent {
     this.handlePressViewAll = this.handlePressViewAll.bind(this)
   }
 
-  handlePressViewAll() {
+  handlePressViewAll () {
 
   }
 
@@ -30,16 +30,16 @@ class LiveEventsSection extends PureComponent {
 
     return (
       <View style={style}>
-        <View style={{flexDirection:'row', alignItems:'center', justifyContent:'space-between' }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
           <Label
-            text={'Live'}
+            text='Live'
             style={{ color: '#FFF', fontSize: 34 }}
           />
 
           <ButtonWithIcon
-            iconType={'Feather'}
-            iconName={'arrow-right'}
-            iconColor={'#FFF'}
+            iconType='Feather'
+            iconName='arrow-right'
+            iconColor='#FFF'
             iconSize={30}
             onPress={this.handlePressViewAll}
           />
@@ -49,7 +49,7 @@ class LiveEventsSection extends PureComponent {
           <SmallLiveCard
             item={{
               videoURL: 'https://listle-video-snippets.s3.us-east-2.amazonaws.com/RjtVyTPE2z',
-              imageURL:'https://www.rollingstone.com/wp-content/uploads/2019/01/R1324_FEA_Tekashi69_B3.jpg?resize=1800,1200&w=1800',
+              imageURL: 'https://www.rollingstone.com/wp-content/uploads/2019/01/R1324_FEA_Tekashi69_B3.jpg?resize=1800,1200&w=1800',
               title: 'Live concert'
             }}
           />
@@ -57,7 +57,7 @@ class LiveEventsSection extends PureComponent {
           <SmallLiveCard
             item={{
               videoURL: 'https://listle-video-snippets.s3.us-east-2.amazonaws.com/RjtVyTPE2z',
-              imageURL:'https://www.rollingstone.com/wp-content/uploads/2019/01/R1324_FEA_Tekashi69_B3.jpg?resize=1800,1200&w=1800',
+              imageURL: 'https://www.rollingstone.com/wp-content/uploads/2019/01/R1324_FEA_Tekashi69_B3.jpg?resize=1800,1200&w=1800',
               title: 'Live concert'
             }}
           />
@@ -65,7 +65,7 @@ class LiveEventsSection extends PureComponent {
           <SmallLiveCard
             item={{
               videoURL: 'https://listle-video-snippets.s3.us-east-2.amazonaws.com/RjtVyTPE2z',
-              imageURL:'https://www.rollingstone.com/wp-content/uploads/2019/01/R1324_FEA_Tekashi69_B3.jpg?resize=1800,1200&w=1800',
+              imageURL: 'https://www.rollingstone.com/wp-content/uploads/2019/01/R1324_FEA_Tekashi69_B3.jpg?resize=1800,1200&w=1800',
               title: 'Live concert'
             }}
           />

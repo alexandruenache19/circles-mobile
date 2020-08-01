@@ -29,7 +29,7 @@ const ButtonWithImage = ({
     onPress={onPress}
     style={style}
   >
-    <View style={{flexDirection: 'row', ...containerStyle}}>
+    <View style={{ flexDirection: 'row', ...containerStyle }}>
       {imageURL ? (
         <FastImage
           style={{
@@ -42,7 +42,7 @@ const ButtonWithImage = ({
           }}
           source={{ uri: imageURL }}
         />
-      ) : null }
+      ) : null}
 
       <Text style={textStyle}>
         {text}

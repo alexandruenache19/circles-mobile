@@ -12,9 +12,7 @@ class Home extends PureComponent {
 
   render () {
     return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: Colors.MAIN_BG_COLOR, alignItems: 'center', justifyContent: 'center' }}>
-        
-      </SafeAreaView>
+      <SafeAreaView style={{ flex: 1, backgroundColor: Colors.MAIN_BG_COLOR, alignItems: 'center', justifyContent: 'center' }} />
     )
   }
 }

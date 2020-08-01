@@ -3,10 +3,10 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { StyleSheet, View, Text } from 'react-native'
 import FastImage from 'react-native-fast-image'
-import Video from 'react-native-video';
+import Video from 'react-native-video'
 import Touchable from 'react-native-platform-touchable'
 
-import {ButtonWithImage,  ButtonWithTextIcon, ButtonWithIcon, LabelHighlight, Label} from '_atoms'
+import { ButtonWithImage, ButtonWithTextIcon, ButtonWithIcon, LabelHighlight, Label } from '_atoms'
 import { Constants, Colors, Spacing } from '_styles'
 
 import { Transitions } from '_navigation'
@@ -28,19 +28,19 @@ class LargeEventCard extends PureComponent {
   }
 
   handleReserveSpot () {
-    const {reserved} = this.state
+    const { reserved } = this.state
 
-    this.setState({reserved: !reserved})
+    this.setState({ reserved: !reserved })
   }
 
   render () {
     const { item } = this.props
     const { reserved } = this.state
-    const price = item.price && item.price.type === 'free' ?
-      'FREE' : item.price.amount + ' ' + item.price.currency
+    const price = item.price && item.price.type === 'free'
+      ? 'FREE' : item.price.amount + ' ' + item.price.currency
 
     return (
-      <View style={{ flex: 1, width: Spacing.DEVICE_WIDTH}}>
+      <View style={{ flex: 1, width: Spacing.DEVICE_WIDTH }}>
         <View style={{ flex: 1, overflow: 'hidden', borderRadius: 10, backgroundColor: Colors.MAIN_CONTRAST_COLOR }}>
           <Touchable
             foreground={Touchable.Ripple('rgba(255,255,255,0.2)', true)}
@@ -52,22 +52,21 @@ class LargeEventCard extends PureComponent {
             activeOpacity={0.8}
           >
             <View style={styles.rectangularCard}>
-              { item.hasOwnProperty('previewVideoURL') ? (
-                  <Video
-                    muted
-                    source={{uri: item.previewVideoURL}}
-                    style={styles.reactangularImage}
-                    resizeMode={'cover'}
-                    ref={(ref) => { this.videoRef = ref }}
-                   />
-                  ) : (
-                   <FastImage
-                    style={styles.reactangularImage}
-                    source={{ uri: item.imageURL }}
-                    resizeMode={FastImage.resizeMode.cover}
-                  />
-                )
-              }
+              {item.hasOwnProperty('previewVideoURL') ? (
+                <Video
+                  muted
+                  source={{ uri: item.previewVideoURL }}
+                  style={styles.reactangularImage}
+                  resizeMode='cover'
+                  ref={(ref) => { this.videoRef = ref }}
+                />
+              ) : (
+                <FastImage
+                  style={styles.reactangularImage}
+                  source={{ uri: item.imageURL }}
+                  resizeMode={FastImage.resizeMode.cover}
+                />
+              )}
 
               <View style={{
                 display: 'flex',
@@ -77,10 +76,10 @@ class LargeEventCard extends PureComponent {
                 alignItems: 'center',
                 justifyContent: 'flex-end',
                 ...StyleSheet.absoluteFillObject
-              }}>
+              }}
+              >
 
-
-                <View style={{flexDirection: 'row', width:'100%', justifyContent: 'space-between'}}>
+                <View style={{ flexDirection: 'row', width: '100%', justifyContent: 'space-between' }}>
                   {
                     item.hasOwnProperty('author') &&
                     item.author.hasOwnProperty('name') &&
@@ -95,14 +94,14 @@ class LargeEventCard extends PureComponent {
                           display: 'flex',
                           justifyContent: 'center',
                           alignItems: 'center',
-                          backgroundColor: '#FFF',
+                          backgroundColor: '#FFF'
                         }}
                         containerStyle={{
                           justifyContent: 'space-between',
                           alignItems: 'center',
-                          padding:6
+                          padding: 6
                         }}
-                        textStyle={{marginLeft: 20, fontSize: 24}}
+                        textStyle={{ marginLeft: 20, fontSize: 24 }}
                         onPress={this.handleNavigateToProfile}
                         width={40}
                         height={40}
@@ -113,12 +112,12 @@ class LargeEventCard extends PureComponent {
                     )
                   }
                   <ButtonWithIcon
-                    iconType={'FontAwesome5'}
-                    iconName={'share'}
-                    iconColor={'#000'}
+                    iconType='FontAwesome5'
+                    iconName='share'
+                    iconColor='#000'
                     iconSize={22}
                     style={{
-                      backgroundColor: "#FFF",
+                      backgroundColor: '#FFF',
                       width: '18%',
                       height: 60,
                       borderRadius: 5,
@@ -127,8 +126,6 @@ class LargeEventCard extends PureComponent {
                     }}
                   />
                 </View>
-
-
 
               </View>
             </View>
@@ -165,7 +162,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     height: '100%',
-    width: '100%',
+    width: '100%'
   },
   title: {
     letterSpacing: -0.3,

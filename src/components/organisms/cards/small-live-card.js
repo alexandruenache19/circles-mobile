@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { StyleSheet, View, Text } from 'react-native'
 import FastImage from 'react-native-fast-image'
 import Touchable from 'react-native-platform-touchable'
-import Video from 'react-native-video';
+import Video from 'react-native-video'
 // constants
 import { Constants } from '_styles'
 
@@ -18,7 +18,7 @@ class SmallLiveCard extends PureComponent {
     this.handleOnPress = this.handleOnPress.bind(this)
   }
 
-  handleOnPress() {
+  handleOnPress () {
 
   }
 
@@ -39,14 +39,14 @@ class SmallLiveCard extends PureComponent {
           <View style={styles.rectangularCard}>
             <Video
               muted
-              source={{uri: item.videoURL}}
+              source={{ uri: item.videoURL }}
               style={styles.reactangularImage}
-              resizeMode={'cover'}
+              resizeMode='cover'
               ref={(ref) => { this.videoRef = ref }}
-             />
+            />
 
             <View style={[StyleSheet.absoluteFillObject, { padding: 12, justifyContent: 'flex-end' }]}>
-              <View style={{  flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around' }}>
                 <FastImage
                   style={styles.authorImage}
                   source={{ uri: item.imageURL }}
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     lineHeight: 22
   },
-  authorImage:{
+  authorImage: {
     width: 34,
     height: 34,
     borderRadius: 17

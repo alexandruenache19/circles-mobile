@@ -28,8 +28,8 @@ const ButtonWithTextIcon = ({
     onPress={onPress}
     style={style}
   >
-    {iconBeforeText ?
-      <View style={{ flexDirection: 'row', display: 'flex', alignItems: 'center', ...containerStyle }}>
+    {iconBeforeText
+      ? <View style={{ flexDirection: 'row', display: 'flex', alignItems: 'center', ...containerStyle }}>
         <Icon
           iconType={iconType}
           iconName={iconName}
@@ -39,9 +39,8 @@ const ButtonWithTextIcon = ({
         <Text style={textStyle}>
           {text}
         </Text>
-      </View>
-      :
-      <View style={{ flexDirection: 'row', display: 'flex', alignItems: 'center', ...containerStyle }}>
+        </View>
+      : <View style={{ flexDirection: 'row', display: 'flex', alignItems: 'center', ...containerStyle }}>
         <Text style={textStyle}>
           {text}
         </Text>
@@ -51,8 +50,7 @@ const ButtonWithTextIcon = ({
           iconColor={iconColor}
           iconSize={iconSize}
         />
-      </View>
-    }
+        </View>}
 
   </TouchableOpacity>
 )

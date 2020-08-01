@@ -1,12 +1,11 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { View, RefreshControl, Platform } from 'react-native'
-import Carousel from 'react-native-snap-carousel';
+import Carousel from 'react-native-snap-carousel'
 import { Navigation } from 'react-native-navigation'
 
 import { LargeEventCard, LargeLiveCard } from '_organisms'
 import { Colors, Spacing } from '_styles'
-
 
 class PopularStreams extends PureComponent {
   constructor (props) {
@@ -19,15 +18,15 @@ class PopularStreams extends PureComponent {
     this.onSnapToItem = this.onSnapToItem.bind(this)
   }
 
-  async componentDidMount() {
+  async componentDidMount () {
 
   }
 
-  rowRenderer({item}) {
+  rowRenderer ({ item }) {
     const { type } = this.props
     if (type === 'live') {
       return (
-        <View style={{flex:1}}>
+        <View style={{ flex: 1 }}>
           <LargeLiveCard
             item={item}
           />
@@ -36,7 +35,7 @@ class PopularStreams extends PureComponent {
       )
     } else if (type === ' event') {
       return (
-        <View style={{flex:1}}>
+        <View style={{ flex: 1 }}>
           <LargeEventCard
             item={item}
           />
@@ -51,7 +50,7 @@ class PopularStreams extends PureComponent {
     )
   }
 
-  onSnapToItem() {
+  onSnapToItem () {
 
   }
 
@@ -63,7 +62,7 @@ class PopularStreams extends PureComponent {
       <Carousel
         ref={(c) => { this._carousel = c }}
         data={data}
-        vertical={true}
+        vertical
         enableSnap
         sliderWidth={Spacing.DEVICE_WIDTH}
         itemWidth={Spacing.DEVICE_WIDTH}
@@ -71,7 +70,7 @@ class PopularStreams extends PureComponent {
         sliderHeight={itemHeight}
         renderItem={this.rowRenderer}
         onSnapToItem={this.onSnapToItem}
-        style={{backgroundColor: Colors.MAIN_BG_COLOR}}
+        style={{ backgroundColor: Colors.MAIN_BG_COLOR }}
         refreshControl={
           <RefreshControl
             progressBackgroundColor={Colors.FLOATING_BG}

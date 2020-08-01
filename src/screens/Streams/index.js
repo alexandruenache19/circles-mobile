@@ -8,23 +8,22 @@ import { Colors, Spacing } from '_styles'
 import { CardsCarouselSection } from '_organisms'
 
 class Home extends PureComponent {
-
   constructor (props) {
     super(props)
 
-    this.state={
+    this.state = {
       statusBarHeight: 0,
       topBarHeight: 0,
       bottomTabsHeight: 0
     }
   }
 
-  async componentDidMount() {
+  async componentDidMount () {
     const {
       statusBarHeight,
       topBarHeight,
       bottomTabsHeight
-    } = await Navigation.constants();
+    } = await Navigation.constants()
 
     this.setState({
       statusBarHeight,
@@ -34,7 +33,7 @@ class Home extends PureComponent {
   }
 
   render () {
-    const {statusBarHeight, topBarHeight, bottomTabsHeight } = this.state
+    const { statusBarHeight, topBarHeight, bottomTabsHeight } = this.state
 
     const itemHeight = Platform.OS === 'ios' ? (
       Spacing.DEVICE_HEIGHT - statusBarHeight - topBarHeight - bottomTabsHeight
@@ -48,11 +47,11 @@ class Home extends PureComponent {
           type='live'
           itemHeight={itemHeight}
           data={[{
-            imageURL:'https://www.rollingstone.com/wp-content/uploads/2019/01/R1324_FEA_Tekashi69_B3.jpg?resize=1800,1200&w=1800',
+            imageURL: 'https://www.rollingstone.com/wp-content/uploads/2019/01/R1324_FEA_Tekashi69_B3.jpg?resize=1800,1200&w=1800',
             title: '69 New Album premier',
             date: 'TODAY AT 3 PM',
             friends: '',
-            previewVideoURL:'https://dyy4gt5vfz7x.cloudfront.net/out/v1/46279cf7a4f542e6b74e2489eb91c9c1/8f37a36348724949a79f8b36f0667aea/a1303b3d66c949a3b9abbafcd497c009/index.m3u8',
+            previewVideoURL: 'https://dyy4gt5vfz7x.cloudfront.net/out/v1/46279cf7a4f542e6b74e2489eb91c9c1/8f37a36348724949a79f8b36f0667aea/a1303b3d66c949a3b9abbafcd497c009/index.m3u8',
             description: 'Daniel Hernandez, known professionally as Tekashi 6ix9ine or just 6ix9ine, is an American rapper, songwriter, and convicted felon.',
             tags: '',
             price: {
@@ -66,7 +65,7 @@ class Home extends PureComponent {
             }
           },
           {
-            imageURL:'https://www.rollingstone.com/wp-content/uploads/2019/01/R1324_FEA_Tekashi69_B3.jpg?resize=1800,1200&w=1800',
+            imageURL: 'https://www.rollingstone.com/wp-content/uploads/2019/01/R1324_FEA_Tekashi69_B3.jpg?resize=1800,1200&w=1800',
             title: '69 New Album premier',
             date: 'TODAY AT 3 PM',
             friends: '',
@@ -83,7 +82,7 @@ class Home extends PureComponent {
             }
           },
           {
-            imageURL:'https://www.rollingstone.com/wp-content/uploads/2019/01/R1324_FEA_Tekashi69_B3.jpg?resize=1800,1200&w=1800',
+            imageURL: 'https://www.rollingstone.com/wp-content/uploads/2019/01/R1324_FEA_Tekashi69_B3.jpg?resize=1800,1200&w=1800',
             title: '69 New Album premier',
             date: 'TODAY AT 3 PM',
             friends: '',
@@ -100,7 +99,7 @@ class Home extends PureComponent {
             }
           },
           {
-            imageURL:'https://www.rollingstone.com/wp-content/uploads/2019/01/R1324_FEA_Tekashi69_B3.jpg?resize=1800,1200&w=1800',
+            imageURL: 'https://www.rollingstone.com/wp-content/uploads/2019/01/R1324_FEA_Tekashi69_B3.jpg?resize=1800,1200&w=1800',
             title: 'Title Title Tile',
             date: 'Date Date',
             friends: '',
@@ -117,7 +116,7 @@ class Home extends PureComponent {
             }
           },
           {
-            imageURL:'https://www.rollingstone.com/wp-content/uploads/2019/01/R1324_FEA_Tekashi69_B3.jpg?resize=1800,1200&w=1800',
+            imageURL: 'https://www.rollingstone.com/wp-content/uploads/2019/01/R1324_FEA_Tekashi69_B3.jpg?resize=1800,1200&w=1800',
             title: 'Live concert',
             date: '',
             friends: '',

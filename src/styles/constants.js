@@ -25,5 +25,5 @@ export const STANDARD_PAGE_OPTIONS = {
     visible: true,
     style: Platform.OS === 'android' ? 'light' : 'light',
     backgroundColor: ANDROID_STATUS_BAR_COLOR
-  },
+  }
 }

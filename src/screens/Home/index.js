@@ -5,37 +5,35 @@ import awsvideoconfig from '../../../aws-video-exports'
 import Video from 'react-native-video'
 import { Colors, Spacing } from '_styles'
 import { Label } from '_atoms'
-import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
+import { TabView, SceneMap, TabBar } from 'react-native-tab-view'
 import { Navigation } from 'react-native-navigation'
-import {CardsCarouselSection} from '_organisms'
+import { CardsCarouselSection, LiveEventsSection } from '_organisms'
 
 // import InstagramLogin from 'react-native-instagram-login';
 // import { NodeCameraView, NodePlayerView, NodeMediaClient } from 'react-native-nodemediaclient'
 
-import { LiveEventsSection } from '_organisms'
-
 const requestCameraPermission = async () => {
   try {
-    const granted = await PermissionsAndroid.requestMultiple([PermissionsAndroid.PERMISSIONS.CAMERA,PermissionsAndroid.PERMISSIONS.RECORD_AUDIO],
+    const granted = await PermissionsAndroid.requestMultiple([PermissionsAndroid.PERMISSIONS.CAMERA, PermissionsAndroid.PERMISSIONS.RECORD_AUDIO],
       {
-        title: "Cool Photo App Camera And Microphone Permission",
+        title: 'Cool Photo App Camera And Microphone Permission',
         message:
-          "Cool Photo App needs access to your camera " +
-          "so you can take awesome pictures.",
-        buttonNeutral: "Ask Me Later",
-        buttonNegative: "Cancel",
-        buttonPositive: "OK"
+          'Cool Photo App needs access to your camera ' +
+          'so you can take awesome pictures.',
+        buttonNeutral: 'Ask Me Later',
+        buttonNegative: 'Cancel',
+        buttonPositive: 'OK'
       }
-    );
+    )
     if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-      console.log("You can use the camera");
+      console.log('You can use the camera')
     } else {
-      console.log("Camera permission denied");
+      console.log('Camera permission denied')
     }
   } catch (err) {
-    console.warn(err);
+    console.warn(err)
   }
-};
+}
 
 class Home extends PureComponent {
   constructor (props) {
@@ -56,12 +54,12 @@ class Home extends PureComponent {
     this.handleSetIndex = this.handleSetIndex.bind(this)
   }
 
-  async componentDidMount() {
+  async componentDidMount () {
     const {
       statusBarHeight,
       topBarHeight,
       bottomTabsHeight
-    } = await Navigation.constants();
+    } = await Navigation.constants()
 
     this.setState({
       statusBarHeight,
@@ -84,199 +82,200 @@ class Home extends PureComponent {
     )
 
     return (
-      <SafeAreaView style={{flex:1, backgroundColor: Colors.MAIN_BG_COLOR, alignItems: 'center', justifyContent: 'center' }}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: Colors.MAIN_BG_COLOR, alignItems: 'center', justifyContent: 'center' }}>
         <TabView
-          style={{ flex: 1, display: 'flex', width:'100%', backgroundColor: Colors.MAIN_BG_COLOR, justifyContent: 'center' }}
-          renderTabBar={props => ( <TabBar
-              {...props}
-              scrollEnabled
-              pressOpacity={0.85}
-              renderLabel={({ route, focused, color }) => (
-                <View style={{ height:100, width:150, alignItems: 'center', justifyContent:'center'}}>
-                  <Text style={{ color: focused ? color : '#323A4F', fontSize: focused ? 34 : 26}}>
-                    {route.title}
-                  </Text>
-                </View>
-              )}
-              indicatorStyle={{ height: 0 }}
-              style={{ backgroundColor: Colors.MAIN_BG_COLOR }}
-            /> )}
+          style={{ flex: 1, display: 'flex', width: '100%', backgroundColor: Colors.MAIN_BG_COLOR, justifyContent: 'center' }}
+          renderTabBar={props => (<TabBar
+            {...props}
+            scrollEnabled
+            pressOpacity={0.85}
+            renderLabel={({ route, focused, color }) => (
+              <View style={{ height: 100, width: 150, alignItems: 'center', justifyContent: 'center' }}>
+                <Text style={{ color: focused ? color : '#323A4F', fontSize: focused ? 34 : 26 }}>
+                  {route.title}
+                </Text>
+              </View>
+            )}
+            indicatorStyle={{ height: 0 }}
+            style={{ backgroundColor: Colors.MAIN_BG_COLOR }}
+                                  />)}
           navigationState={{ index, routes }}
           renderScene={SceneMap({
-           first: () => <CardsCarouselSection
-            type='event'
-            itemHeight={itemHeight}
-            data={[
-             {
-               imageURL:'https://www.rollingstone.com/wp-content/uploads/2019/01/R1324_FEA_Tekashi69_B3.jpg?resize=1800,1200&w=1800',
-               title: '69 New Album premier',
-               date: 'TODAY AT 3 PM',
-               friends: '',
-               description: 'Daniel Hernandez, known professionally as Tekashi 6ix9ine or just 6ix9ine, is an American rapper, songwriter, and convicted felon.',
-               tags: '',
-               price: {
-                 currency: '$',
-                 amount: '22',
-                 type: 'free'
-               },
-               author: {
-                 name: '',
-                 imageURL: ''
-               }
-             },
-             {
-               imageURL:'https://www.rollingstone.com/wp-content/uploads/2019/01/R1324_FEA_Tekashi69_B3.jpg?resize=1800,1200&w=1800',
-               title: '69 New Album premier',
-               date: 'TODAY AT 3 PM',
-               friends: '',
-               description: 'Daniel Hernandez, known professionally as Tekashi 6ix9ine or just 6ix9ine, is an American rapper, songwriter, and convicted felon.',
-               tags: '',
-               price: {
-                 currency: '$',
-                 amount: '22',
-                 type: 'free'
-               },
-               author: {
-                 name: '',
-                 imageURL: ''
-               }
-             },{
-               imageURL:'https://www.rollingstone.com/wp-content/uploads/2019/01/R1324_FEA_Tekashi69_B3.jpg?resize=1800,1200&w=1800',
-               title: '69 New Album premier',
-               date: 'TODAY AT 3 PM',
-               friends: '',
-               description: 'Daniel Hernandez, known professionally as Tekashi 6ix9ine or just 6ix9ine, is an American rapper, songwriter, and convicted felon.',
-               tags: '',
-               price: {
-                 currency: '$',
-                 amount: '22',
-                 type: 'free'
-               },
-               author: {
-                 name: '',
-                 imageURL: ''
-               }
-             },{
-               imageURL:'https://www.rollingstone.com/wp-content/uploads/2019/01/R1324_FEA_Tekashi69_B3.jpg?resize=1800,1200&w=1800',
-               title: '69 New Album premier',
-               date: 'TODAY AT 3 PM',
-               friends: '',
-               description: 'Daniel Hernandez, known professionally as Tekashi 6ix9ine or just 6ix9ine, is an American rapper, songwriter, and convicted felon.',
-               tags: '',
-               price: {
-                 currency: '$',
-                 amount: '22',
-                 type: 'free'
-               },
-               author: {
-                 name: '',
-                 imageURL: ''
-               }
-             },{
-               imageURL:'https://www.rollingstone.com/wp-content/uploads/2019/01/R1324_FEA_Tekashi69_B3.jpg?resize=1800,1200&w=1800',
-               title: '69 New Album premier',
-               date: 'TODAY AT 3 PM',
-               friends: '',
-               description: 'Daniel Hernandez, known professionally as Tekashi 6ix9ine or just 6ix9ine, is an American rapper, songwriter, and convicted felon.',
-               tags: '',
-               price: {
-                 currency: '$',
-                 amount: '22',
-                 type: 'free'
-               },
-               author: {
-                 name: '',
-                 imageURL: ''
-               }
-             },{
-               imageURL:'https://www.rollingstone.com/wp-content/uploads/2019/01/R1324_FEA_Tekashi69_B3.jpg?resize=1800,1200&w=1800',
-               title: '69 New Album premier',
-               date: 'TODAY AT 3 PM',
-               friends: '',
-               description: 'Daniel Hernandez, known professionally as Tekashi 6ix9ine or just 6ix9ine, is an American rapper, songwriter, and convicted felon.',
-               tags: '',
-               price: {
-                 currency: '$',
-                 amount: '22',
-                 type: 'free'
-               },
-               author: {
-                 name: '',
-                 imageURL: ''
-               }
-             },
-           ]} />,
-           second: () => <CardsCarouselSection
-            type='event'
-            itemHeight={itemHeight}
-            data={[{
-             imageURL:'https://www.rollingstone.com/wp-content/uploads/2019/01/R1324_FEA_Tekashi69_B3.jpg?resize=1800,1200&w=1800',
-             title: '69 New Album premier',
-             date: 'TODAY AT 3 PM',
-             friends: '',
-             description: 'Daniel Hernandez, known professionally as Tekashi 6ix9ine or just 6ix9ine, is an American rapper, songwriter, and convicted felon.',
-             tags: '',
-             price: {
-               currency: '$',
-               amount: '22',
-               type: 'free'
-             },
-             author: {
-               name: '',
-               imageURL: ''
-             }
-           }, {
-             imageURL:'https://www.rollingstone.com/wp-content/uploads/2019/01/R1324_FEA_Tekashi69_B3.jpg?resize=1800,1200&w=1800',
-             title: 'Title Title Tile',
-             date: 'Date Date',
-             friends: '',
-             description: 'Description Description Description Description Description Description Description',
-             tags: '',
-             price: {
-               currency: '$',
-               amount: '22',
-               type: 'free'
-             },
-             author: {
-               name: '',
-               imageURL: ''
-             }
-           }, {
-             imageURL:'https://www.rollingstone.com/wp-content/uploads/2019/01/R1324_FEA_Tekashi69_B3.jpg?resize=1800,1200&w=1800',
-             title: 'Live concert',
-             date: '',
-             friends: '',
-             description: '',
-             tags: '',
-             price: {
-               currency: '$',
-               amount: '22',
-               type: 'free'
-             },
-             author: {
-               name: '',
-               imageURL: ''
-             }
-           }]}
-           />,
-           third: () => <CardsCarouselSection
-             type='event'
-             itemHeight={itemHeight}
-             data={[]}
-            />,
-           fourth: () => <CardsCarouselSection
-             type='event'
-             itemHeight={itemHeight}
-             data={[]}
-            />,
-           fifth: () => <CardsCarouselSection
-             type='event'
-             itemHeight={itemHeight}
-             data={[]}
-            />,
+            first: () => <CardsCarouselSection
+              type='event'
+              itemHeight={itemHeight}
+              data={[
+                {
+                  imageURL: 'https://www.rollingstone.com/wp-content/uploads/2019/01/R1324_FEA_Tekashi69_B3.jpg?resize=1800,1200&w=1800',
+                  title: '69 New Album premier',
+                  date: 'TODAY AT 3 PM',
+                  friends: '',
+                  description: 'Daniel Hernandez, known professionally as Tekashi 6ix9ine or just 6ix9ine, is an American rapper, songwriter, and convicted felon.',
+                  tags: '',
+                  price: {
+                    currency: '$',
+                    amount: '22',
+                    type: 'free'
+                  },
+                  author: {
+                    name: '',
+                    imageURL: ''
+                  }
+                },
+                {
+                  imageURL: 'https://www.rollingstone.com/wp-content/uploads/2019/01/R1324_FEA_Tekashi69_B3.jpg?resize=1800,1200&w=1800',
+                  title: '69 New Album premier',
+                  date: 'TODAY AT 3 PM',
+                  friends: '',
+                  description: 'Daniel Hernandez, known professionally as Tekashi 6ix9ine or just 6ix9ine, is an American rapper, songwriter, and convicted felon.',
+                  tags: '',
+                  price: {
+                    currency: '$',
+                    amount: '22',
+                    type: 'free'
+                  },
+                  author: {
+                    name: '',
+                    imageURL: ''
+                  }
+                }, {
+                  imageURL: 'https://www.rollingstone.com/wp-content/uploads/2019/01/R1324_FEA_Tekashi69_B3.jpg?resize=1800,1200&w=1800',
+                  title: '69 New Album premier',
+                  date: 'TODAY AT 3 PM',
+                  friends: '',
+                  description: 'Daniel Hernandez, known professionally as Tekashi 6ix9ine or just 6ix9ine, is an American rapper, songwriter, and convicted felon.',
+                  tags: '',
+                  price: {
+                    currency: '$',
+                    amount: '22',
+                    type: 'free'
+                  },
+                  author: {
+                    name: '',
+                    imageURL: ''
+                  }
+                }, {
+                  imageURL: 'https://www.rollingstone.com/wp-content/uploads/2019/01/R1324_FEA_Tekashi69_B3.jpg?resize=1800,1200&w=1800',
+                  title: '69 New Album premier',
+                  date: 'TODAY AT 3 PM',
+                  friends: '',
+                  description: 'Daniel Hernandez, known professionally as Tekashi 6ix9ine or just 6ix9ine, is an American rapper, songwriter, and convicted felon.',
+                  tags: '',
+                  price: {
+                    currency: '$',
+                    amount: '22',
+                    type: 'free'
+                  },
+                  author: {
+                    name: '',
+                    imageURL: ''
+                  }
+                }, {
+                  imageURL: 'https://www.rollingstone.com/wp-content/uploads/2019/01/R1324_FEA_Tekashi69_B3.jpg?resize=1800,1200&w=1800',
+                  title: '69 New Album premier',
+                  date: 'TODAY AT 3 PM',
+                  friends: '',
+                  description: 'Daniel Hernandez, known professionally as Tekashi 6ix9ine or just 6ix9ine, is an American rapper, songwriter, and convicted felon.',
+                  tags: '',
+                  price: {
+                    currency: '$',
+                    amount: '22',
+                    type: 'free'
+                  },
+                  author: {
+                    name: '',
+                    imageURL: ''
+                  }
+                }, {
+                  imageURL: 'https://www.rollingstone.com/wp-content/uploads/2019/01/R1324_FEA_Tekashi69_B3.jpg?resize=1800,1200&w=1800',
+                  title: '69 New Album premier',
+                  date: 'TODAY AT 3 PM',
+                  friends: '',
+                  description: 'Daniel Hernandez, known professionally as Tekashi 6ix9ine or just 6ix9ine, is an American rapper, songwriter, and convicted felon.',
+                  tags: '',
+                  price: {
+                    currency: '$',
+                    amount: '22',
+                    type: 'free'
+                  },
+                  author: {
+                    name: '',
+                    imageURL: ''
+                  }
+                }
+              ]}
+                         />,
+            second: () => <CardsCarouselSection
+              type='event'
+              itemHeight={itemHeight}
+              data={[{
+                imageURL: 'https://www.rollingstone.com/wp-content/uploads/2019/01/R1324_FEA_Tekashi69_B3.jpg?resize=1800,1200&w=1800',
+                title: '69 New Album premier',
+                date: 'TODAY AT 3 PM',
+                friends: '',
+                description: 'Daniel Hernandez, known professionally as Tekashi 6ix9ine or just 6ix9ine, is an American rapper, songwriter, and convicted felon.',
+                tags: '',
+                price: {
+                  currency: '$',
+                  amount: '22',
+                  type: 'free'
+                },
+                author: {
+                  name: '',
+                  imageURL: ''
+                }
+              }, {
+                imageURL: 'https://www.rollingstone.com/wp-content/uploads/2019/01/R1324_FEA_Tekashi69_B3.jpg?resize=1800,1200&w=1800',
+                title: 'Title Title Tile',
+                date: 'Date Date',
+                friends: '',
+                description: 'Description Description Description Description Description Description Description',
+                tags: '',
+                price: {
+                  currency: '$',
+                  amount: '22',
+                  type: 'free'
+                },
+                author: {
+                  name: '',
+                  imageURL: ''
+                }
+              }, {
+                imageURL: 'https://www.rollingstone.com/wp-content/uploads/2019/01/R1324_FEA_Tekashi69_B3.jpg?resize=1800,1200&w=1800',
+                title: 'Live concert',
+                date: '',
+                friends: '',
+                description: '',
+                tags: '',
+                price: {
+                  currency: '$',
+                  amount: '22',
+                  type: 'free'
+                },
+                author: {
+                  name: '',
+                  imageURL: ''
+                }
+              }]}
+                          />,
+            third: () => <CardsCarouselSection
+              type='event'
+              itemHeight={itemHeight}
+              data={[]}
+                         />,
+            fourth: () => <CardsCarouselSection
+              type='event'
+              itemHeight={itemHeight}
+              data={[]}
+                          />,
+            fifth: () => <CardsCarouselSection
+              type='event'
+              itemHeight={itemHeight}
+              data={[]}
+                         />
           })}
           onIndexChange={this.handleSetIndex}
-          initialLayout={{height: Spacing.DEVICE_HEIGHT, width: Spacing.DEVICE_WIDTH}}
+          initialLayout={{ height: Spacing.DEVICE_HEIGHT, width: Spacing.DEVICE_WIDTH }}
         />
 
       </SafeAreaView>
