@@ -42,112 +42,114 @@ class LargeEventCard extends PureComponent {
       'FREE' : item.price.amount + ' ' + item.price.currency
 
     return (
-      <View style={{ overflow: 'hidden', borderRadius: 10, backgroundColor: Colors.MAIN_CONTRAST_COLOR }}>
-        <Touchable
-          foreground={Touchable.Ripple('rgba(255,255,255,0.2)', true)}
-          onPress={this.handleOnPress}
-          accessible
-          accessibilityLabel={item.title}
-          accessibilityHint='Double tap to view this live'
-          style={styles.container}
-          activeOpacity={0.8}
-        >
-          <View style={styles.rectangularCard}>
-            { item.hasOwnProperty('previewVideoURL') ? (
-                <FastImage
-                 style={styles.reactangularImage}
-                 source={{ uri: item.imageURL }}
-                 resizeMode={FastImage.resizeMode.cover}
-               />
-              ) : (
-               <FastImage
-                style={styles.reactangularImage}
-                source={{ uri: item.imageURL }}
-                resizeMode={FastImage.resizeMode.cover}
-              />
-              )
-            }
+      <View style={{flex:1}}>
+        <View style={{ flex:1, overflow: 'hidden', borderRadius: 10, backgroundColor: Colors.MAIN_CONTRAST_COLOR }}>
+          <Touchable
+            foreground={Touchable.Ripple('rgba(255,255,255,0.2)', true)}
+            onPress={this.handleOnPress}
+            accessible
+            accessibilityLabel={item.title}
+            accessibilityHint='Double tap to view this live'
+            style={styles.container}
+            activeOpacity={0.8}
+          >
+            <View style={styles.rectangularCard}>
+              { item.hasOwnProperty('previewVideoURL') ? (
+                  <FastImage
+                   style={styles.reactangularImage}
+                   source={{ uri: item.imageURL }}
+                   resizeMode={FastImage.resizeMode.cover}
+                 />
+                ) : (
+                 <FastImage
+                  style={styles.reactangularImage}
+                  source={{ uri: item.imageURL }}
+                  resizeMode={FastImage.resizeMode.cover}
+                />
+                )
+              }
 
-            <View style={{
-              display: 'flex',
-              flex: 1,
-              width: '100%',
-              padding: 12,
-              alignItems: 'flex-start',
-              justifyContent: 'space-between'
-            }}>
-              <View>
-                <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+              <View style={{
+                display: 'flex',
+                flex: 1,
+                width: '100%',
+                padding: 12,
+                alignItems: 'flex-start',
+                justifyContent: 'space-between'
+              }}>
+                <View style={{width: '100%'}}>
+                  <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+                    <Text
+                      style={styles.title}
+                      ellipsizeMode='tail'
+                      numberOfLines={3}
+                    >
+                      {item.date}
+                    </Text>
+
+                    <LabelHighlight
+                      text={price}
+                    />
+                  </View>
+
                   <Text
                     style={styles.title}
                     ellipsizeMode='tail'
                     numberOfLines={3}
                   >
-                    {item.date}
+                    {item.title}
                   </Text>
 
-                  <LabelHighlight
-                    text={price}
-                  />
+                  <Text
+                    style={styles.title}
+                    ellipsizeMode='tail'
+                    numberOfLines={3}
+                  >
+                    {item.description}
+                  </Text>
                 </View>
 
-                <Text
-                  style={styles.title}
-                  ellipsizeMode='tail'
-                  numberOfLines={3}
-                >
-                  {item.title}
-                </Text>
+                <View style={{flexDirection: 'row', width:'100%', justifyContent:'space-between'}}>
+                  <ButtonWithTextIcon
+                    iconType={reserved ? 'FontAwesome' : 'Ionicons'}
+                    iconName={reserved ? 'check' : 'md-notifications'}
+                    iconColor={'#FFF'}
+                    iconSize={22}
+                    text={reserved ? 'Reserved' : 'Reserve spot'}
+                    style={{
+                      backgroundColor: Colors.MAIN_BG_COLOR,
+                      width: 300,
+                      borderRadius: 5,
+                      justifyContent: 'center',
+                      alignItems: 'center'
+                    }}
+                    textStyle={{
+                      paddingLeft: 10,
+                      fontSize: 22,
+                      color:'#FFF'
+                    }}
+                    onPress={this.handleReserveSpot}
+                  />
 
-                <Text
-                  style={styles.title}
-                  ellipsizeMode='tail'
-                  numberOfLines={3}
-                >
-                  {item.description}
-                </Text>
-              </View>
-
-              <View style={{flexDirection: 'row', width:'100%', justifyContent:'space-between'}}>
-                <ButtonWithTextIcon
-                  iconType={reserved ? 'FontAwesome' : 'Ionicons'}
-                  iconName={reserved ? 'check' : 'md-notifications'}
-                  iconColor={'#FFF'}
-                  iconSize={22}
-                  text={reserved ? 'Reserved' : 'Reserve spot'}
-                  style={{
-                    backgroundColor: Colors.MAIN_BG_COLOR,
-                    width: 300,
-                    borderRadius: 5,
-                    justifyContent: 'center',
-                    alignItems: 'center'
-                  }}
-                  textStyle={{
-                    paddingLeft: 10,
-                    fontSize: 22,
-                    color:'#FFF'
-                  }}
-                  onPress={this.handleReserveSpot}
-                />
-
-                <ButtonWithIcon
-                  iconType={'FontAwesome5'}
-                  iconName={'share'}
-                  iconColor={'#FFF'}
-                  iconSize={22}
-                  style={{
-                    backgroundColor: Colors.MAIN_BG_COLOR,
-                    width: 70,
-                    height: 50,
-                    borderRadius: 5,
-                    justifyContent: 'center',
-                    alignItems: 'center'
-                  }}
-                />
+                  <ButtonWithIcon
+                    iconType={'FontAwesome5'}
+                    iconName={'share'}
+                    iconColor={'#FFF'}
+                    iconSize={22}
+                    style={{
+                      backgroundColor: Colors.MAIN_BG_COLOR,
+                      width: 70,
+                      height: 50,
+                      borderRadius: 5,
+                      justifyContent: 'center',
+                      alignItems: 'center'
+                    }}
+                  />
+                </View>
               </View>
             </View>
-          </View>
-        </Touchable>
+          </Touchable>
+        </View>
       </View>
     )
   }
@@ -162,8 +164,7 @@ const mapDispatchToProps = {
 
 const styles = StyleSheet.create({
   container: {
-    width: 400,
-    height: 500,
+    flex:1,
     borderRadius: 10
   },
 

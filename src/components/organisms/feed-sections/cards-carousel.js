@@ -1,10 +1,11 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import { View, RefreshControl } from 'react-native'
+import { View, RefreshControl, Platform } from 'react-native'
+import Carousel from 'react-native-snap-carousel';
+import { Navigation } from 'react-native-navigation'
 
 import { LargeEventCard, LargeLiveCard } from '_organisms'
 import { Colors, Spacing } from '_styles'
-import Carousel from 'react-native-snap-carousel';
 
 
 class PopularStreams extends PureComponent {
@@ -18,7 +19,7 @@ class PopularStreams extends PureComponent {
     this.onSnapToItem = this.onSnapToItem.bind(this)
   }
 
-  componentDidMount() {
+  async componentDidMount() {
 
   }
 
@@ -26,15 +27,20 @@ class PopularStreams extends PureComponent {
     const { type } = this.props
     if (type === 'live') {
       return (
-        <LargeLiveCard
-          item={item}
-        />
+        <View style={{flex:1}}>
+          <LargeLiveCard
+            item={item}
+          />
+        </View>
+
       )
     } else if (type === ' event') {
       return (
-        <LargeEventCard
-          item={item}
-        />
+        <View style={{flex:1}}>
+          <LargeEventCard
+            item={item}
+          />
+        </View>
       )
     }
 
@@ -51,17 +57,18 @@ class PopularStreams extends PureComponent {
 
   render () {
     const { index, routes } = this.state
-    const { data } = this.props
+
+    const { data, itemHeight } = this.props
     return (
       <Carousel
         ref={(c) => { this._carousel = c }}
         data={data}
         vertical={true}
         enableSnap
-        sliderWidth={500}
-        sliderHeight={500}
-        itemWidth={500}
-        itemHeight={500}
+        sliderWidth={Spacing.DEVICE_WIDTH}
+        itemWidth={Spacing.DEVICE_WIDTH}
+        itemHeight={itemHeight}
+        sliderHeight={itemHeight}
         renderItem={this.rowRenderer}
         onSnapToItem={this.onSnapToItem}
         style={{backgroundColor: Colors.MAIN_BG_COLOR}}

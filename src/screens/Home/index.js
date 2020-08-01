@@ -6,13 +6,14 @@ import Video from 'react-native-video'
 import { Colors, Spacing } from '_styles'
 import { Label } from '_atoms'
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
-
+import { Navigation } from 'react-native-navigation'
 import {CardsCarouselSection} from '_organisms'
 
 // import InstagramLogin from 'react-native-instagram-login';
 // import { NodeCameraView, NodePlayerView, NodeMediaClient } from 'react-native-nodemediaclient'
 
 import { LiveEventsSection } from '_organisms'
+
 const requestCameraPermission = async () => {
   try {
     const granted = await PermissionsAndroid.requestMultiple([PermissionsAndroid.PERMISSIONS.CAMERA,PermissionsAndroid.PERMISSIONS.RECORD_AUDIO],
@@ -41,6 +42,9 @@ class Home extends PureComponent {
     super(props)
     this.state = {
       index: 0,
+      statusBarHeight: 0,
+      topBarHeight: 0,
+      bottomTabsHeight: 0,
       routes: [
         { key: 'first', title: 'For you' },
         { key: 'second', title: 'Popular' },
@@ -52,8 +56,18 @@ class Home extends PureComponent {
     this.handleSetIndex = this.handleSetIndex.bind(this)
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    const {
+      statusBarHeight,
+      topBarHeight,
+      bottomTabsHeight
+    } = await Navigation.constants();
 
+    this.setState({
+      statusBarHeight,
+      topBarHeight,
+      bottomTabsHeight
+    })
   }
 
   handleSetIndex (index) {
@@ -61,12 +75,18 @@ class Home extends PureComponent {
   }
 
   render () {
-    const { index, routes } = this.state
+    const { index, routes, statusBarHeight, topBarHeight, bottomTabsHeight } = this.state
+
+    const itemHeight = Platform.OS === 'ios' ? (
+      (Spacing.DEVICE_HEIGHT - statusBarHeight - topBarHeight - bottomTabsHeight) * 0.8
+    ) : (
+      (Spacing.DEVICE_HEIGHT - topBarHeight - bottomTabsHeight) * 0.8
+    )
 
     return (
-      <SafeAreaView style={{ height: Spacing.DEVICE_HEIGHT, width: Spacing.DEVICE_WIDTH, backgroundColor: Colors.MAIN_BG_COLOR, alignItems: 'center', justifyContent: 'center' }}>
+      <SafeAreaView style={{flex:1, backgroundColor: Colors.MAIN_BG_COLOR, alignItems: 'center', justifyContent: 'center' }}>
         <TabView
-          style={{ width: '100%', marginLeft: 10, marginRight: 10, backgroundColor: Colors.MAIN_BG_COLOR, justifyContent: 'center'  }}
+          style={{ flex: 1, display: 'flex', width:'100%', backgroundColor: Colors.MAIN_BG_COLOR, justifyContent: 'center' }}
           renderTabBar={props => ( <TabBar
               {...props}
               scrollEnabled
@@ -77,16 +97,16 @@ class Home extends PureComponent {
                     {route.title}
                   </Text>
                 </View>
-
               )}
-              indicatorStyle={{
-                height: 0
-              }}
+              indicatorStyle={{ height: 0 }}
               style={{ backgroundColor: Colors.MAIN_BG_COLOR }}
             /> )}
           navigationState={{ index, routes }}
           renderScene={SceneMap({
-           first: () => <CardsCarouselSection data={[
+           first: () => <CardsCarouselSection
+            type='event'
+            itemHeight={itemHeight}
+            data={[
              {
                imageURL:'https://www.rollingstone.com/wp-content/uploads/2019/01/R1324_FEA_Tekashi69_B3.jpg?resize=1800,1200&w=1800',
                title: '69 New Album premier',
@@ -185,8 +205,11 @@ class Home extends PureComponent {
                  imageURL: ''
                }
              },
-           ]} type='event' />,
-           second: () => <CardsCarouselSection data={[{
+           ]} />,
+           second: () => <CardsCarouselSection
+            type='event'
+            itemHeight={itemHeight}
+            data={[{
              imageURL:'https://www.rollingstone.com/wp-content/uploads/2019/01/R1324_FEA_Tekashi69_B3.jpg?resize=1800,1200&w=1800',
              title: '69 New Album premier',
              date: 'TODAY AT 3 PM',
@@ -234,10 +257,23 @@ class Home extends PureComponent {
                name: '',
                imageURL: ''
              }
-           }]} type='event' />,
-           third: () => <CardsCarouselSection data={[]} type='event' />,
-           fourth: () => <CardsCarouselSection data={[]} type='event' />,
-           fifth: () => <CardsCarouselSection data={[]}  type='event' />,
+           }]}
+           />,
+           third: () => <CardsCarouselSection
+             type='event'
+             itemHeight={itemHeight}
+             data={[]}
+            />,
+           fourth: () => <CardsCarouselSection
+             type='event'
+             itemHeight={itemHeight}
+             data={[]}
+            />,
+           fifth: () => <CardsCarouselSection
+             type='event'
+             itemHeight={itemHeight}
+             data={[]}
+            />,
           })}
           onIndexChange={this.handleSetIndex}
           initialLayout={{height: Spacing.DEVICE_HEIGHT, width: Spacing.DEVICE_WIDTH}}

@@ -2,6 +2,7 @@
 export { default as ButtonWithText } from './button/button-with-text'
 export { default as ButtonWithTextIcon } from './button/button-with-text-icon'
 export { default as ButtonWithIcon } from './button/button-with-icon'
+export { default as ButtonWithImage } from './button/button-with-image'
 
 // Icon
 export { default as Icon } from './icon'
